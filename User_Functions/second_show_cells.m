@@ -1,13 +1,13 @@
 function second_show_cells(input)
 
-imGPUadj = cat(3,   input.RB_img, ...
-                    input.BLANK_img, ...
-                    input.DAPI_img);
+imGPUadj = cat(3,   input.DAPI_img, ...
+                    input.RB_img, ...
+                    input.BLANK_img);
 x_img = input.x_img; 
 y_img = input.y_img; 
 
 figure('Units', 'Normalized', 'Position', [.15 0 .25 1])
-titles = {'RB/DAPI', 'CCK/RB/DAPI', 'FOS/RB/DAPI'}; 
+titles = {'G = RB / R = DAPI', 'G = CCK / R = DAPI', 'G = FOS / R = DAPI'}; 
 for aa = 1:length(titles)
     subplot(length(titles),1,aa)
     if aa == 1

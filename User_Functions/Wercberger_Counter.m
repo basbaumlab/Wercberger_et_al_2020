@@ -22,14 +22,14 @@ for aa = 1:4
     
     % Adjust levels 
     switch aa
-        case 1
+        case 1 % DAPI
             adj_levels = [0     0.3]; 
-        case 2
+        case 2 % RB
             adj_levels = [0.03  0.25]; 
-        case 3 
+        case 3 % CCK
             adj_levels = [0     1]; 
-        case 4
-            adj_levels = [0     1]; 
+        case 4 % FOS
+            adj_levels = [.2     .8]; 
     end
     tempGPU = imadjust(tempGPU, adj_levels, []); 
                                 
@@ -61,6 +61,7 @@ for aa = 1:length(x)
     input.x_img = round([x(aa)-fitplot, x(aa)+fitplot]);
 
     % Do stuff 
+    input.nest = 1; 
     [local_answer] = identify_cells(input); 
     close(gcf)
 
@@ -74,6 +75,7 @@ for aa = 1:length(x)
 
             % Cycle through split cells 
             for bb = 1:length(x_redo)
+                input.nest = 2;
                 input.y_img = round([y_redo(bb)-fitplot, y_redo(bb)+fitplot]);
                 input.x_img = round([x_redo(bb)-fitplot, x_redo(bb)+fitplot]);
                 [local_answer] = identify_cells(input);
