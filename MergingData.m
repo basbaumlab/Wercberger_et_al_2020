@@ -23,6 +23,7 @@ exp_table
 writetable(exp_table,[filepath 'Master_File.xlsx'])
 
 % Make figures 
+rgbmatrix = [25, 70, 250; 160, 0, 200; 250, 0, 30; 204, 204, 204]/255; 
 u_gene = unique(exp_table.gene_name); 
 u_stim = unique(exp_table.stimulus); 
 for aa = 1:length(u_gene)
@@ -43,17 +44,14 @@ for aa = 1:length(u_gene)
         for_pie = [for_pie(1) - for_pie(3), for_pie(3), for_pie(2) - for_pie(3), 1-(for_pie(1)+for_pie(2))]*100; 
 
         figure
-        pie(for_pie)
+        hPieComponentHandles = pie(for_pie); 
+        for cc = 1:length(for_pie)
+            set(hPieComponentHandles((cc*2)-1), 'FaceColor', rgbmatrix(cc,:), 'EdgeColor', [10, 150, 15]/250, 'LineWidth', 3);
+        end
         legend
         title([u_gene{aa} ' ' u_stim{bb}])
-        
         print([filepath 'figure ' u_gene{aa} ' ' u_stim{bb}], '-dpdf')
-        
         close(gcf)
     end
 end
-
-
-
-
 

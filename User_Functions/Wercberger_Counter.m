@@ -17,7 +17,13 @@ for aa = 1:4
     temp = imread(input_img, aa);
 
     % Convert to gpuArray and filter  
-    tempGPU = gpuArray(temp);
+    try
+        % If GPU is available, use it 
+        tempGPU = gpuArray(temp);
+    catch
+        % If not, then not 
+        tempGPU = temp;
+    end
     tempGPU = imgaussfilt(tempGPU, .75); 
     
     % Adjust levels 
