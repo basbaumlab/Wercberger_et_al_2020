@@ -18,7 +18,7 @@ for aa = 1:length(filenames)
     
 end
 
-%% Create figure  
+%% Create figure of all projection neurons 
 for aa = 1:length(filenames)    
     % Generate filename  
     input_img = [filenames(aa).folder '\' filenames(aa).name]; 
@@ -26,7 +26,7 @@ for aa = 1:length(filenames)
     save_filename = [filenames(aa).folder '\' filenames(aa).name(1:end-4) '_processed.fig']; 
     
     if ~exist(save_filename)
-    % Open
+        % Open
         tbl = readtable(input_tbl); 
         img = imread(input_img, 2); 
         img(:,:,2) = imread(input_img, 3);
@@ -37,6 +37,61 @@ for aa = 1:length(filenames)
         imshow(img)
         hold on
         plot(tbl.X_pos, tbl.Y_pos, 'ow')
+        hold off 
+
+        % Save image 
+        savefig(save_filename)
+        close(gcf)
+         
+    end
+end
+
+%% Create figure just for CCK+ PN
+for aa = 1:length(filenames)    
+    % Generate filename  
+    input_img = [filenames(aa).folder '\' filenames(aa).name]; 
+    input_tbl = [filenames(aa).folder '\' filenames(aa).name(1:end-4) '_table.xlsx']; 
+    save_filename = [filenames(aa).folder '\' filenames(aa).name(1:end-4) '_processed_CCK.fig']; 
+    
+    if ~exist(save_filename)
+        % Open
+        tbl = readtable(input_tbl); 
+        img = imread(input_img, 2); 
+        img(:,:,2) = imread(input_img, 3);
+        img(:,:,3) = imread(input_img, 4);
+
+        % Plot 
+        figure 
+        imshow(img)
+        hold on
+        plot(tbl.X_pos(tbl.CCK>0), tbl.Y_pos(tbl.CCK>0), 'ow')
+        hold off 
+
+        % Save image 
+        savefig(save_filename)
+        close(gcf)
+    end
+end
+
+%% Create figure just for FOS+ PN
+for aa = 1:length(filenames)    
+    % Generate filename  
+    input_img = [filenames(aa).folder '\' filenames(aa).name]; 
+    input_tbl = [filenames(aa).folder '\' filenames(aa).name(1:end-4) '_table.xlsx']; 
+    save_filename = [filenames(aa).folder '\' filenames(aa).name(1:end-4) '_processed_CCK.fig']; 
+    
+    if ~exist(save_filename)
+        % Open
+        tbl = readtable(input_tbl); 
+        img = imread(input_img, 2); 
+        img(:,:,2) = imread(input_img, 3);
+        img(:,:,3) = imread(input_img, 4);
+
+        % Plot 
+        figure 
+        imshow(img)
+        hold on
+        plot(tbl.X_pos(tbl.FOS>0), tbl.Y_pos(tbl.FOS>0), 'ow')
         hold off 
 
         % Save image 
