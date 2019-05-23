@@ -78,7 +78,7 @@ for aa = 1:length(filenames)
     % Generate filename  
     input_img = [filenames(aa).folder '\' filenames(aa).name]; 
     input_tbl = [filenames(aa).folder '\' filenames(aa).name(1:end-4) '_table.xlsx']; 
-    save_filename = [filenames(aa).folder '\' filenames(aa).name(1:end-4) '_processed_CCK.fig']; 
+    save_filename = [filenames(aa).folder '\' filenames(aa).name(1:end-4) '_processed_FOS.fig']; 
     
     if ~exist(save_filename)
         % Open
