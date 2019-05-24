@@ -7,7 +7,10 @@
 % individual animal, with data averaged across images. 
 %
 % This script will also produce pie (YUM!) charts (DOH!) from the MASTER 
-% FILE data .  
+% FILE data.
+%
+% Point the directory to a folder that contains the output of the
+% 03_Image_Data_Merger for each animal. 
 
 % step up workspace 
 clc, clear, close all

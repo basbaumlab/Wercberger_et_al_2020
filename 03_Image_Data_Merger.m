@@ -1,10 +1,10 @@
 %% Image Data Merger 
 %
-% RUN THIS SCRIPT AFTER RUNNING GEOFENCING. 
+% RUN THIS SCRIPT AFTER RUNNING ROI Analysis. 
 %
 % This script will merge xlsx count files from individual images after you
-% have counted each image and then run the geofencing script. This will not
-% work without having done the geofencing on each image within the folder.
+% have counted each image and then run the ROI Analysis script. This will not
+% work without having done the ROI Analysis on each image within the folder.
 % The output will be a table (xlsx) that contains the mean values for each
 % image, for a specific animal (determined by where the directory points
 % to). Data is averaged across neurons. 
