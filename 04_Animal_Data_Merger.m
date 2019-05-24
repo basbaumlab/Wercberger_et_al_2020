@@ -1,3 +1,14 @@
+%% Animal Data Merger 
+%
+% RUN THIS SCRIPT LAST. 
+%
+% This script will merge together data from individual images within an
+% animal file, and will generate the MASTER_FILE, where each row is an
+% individual animal, with data averaged across images. 
+%
+% This script will also produce pie (YUM!) charts (DOH!) from the MASTER 
+% FILE data .  
+
 % step up workspace 
 clc, clear, close all
 

@@ -1,3 +1,10 @@
+%% Cell Counting Script
+%
+% RUN THIS FIRST!
+%
+% This script will allow you to count cells within your image. It will also
+% create figures that show projection neurons, CCK+ projections neurons,
+% and FOS+ projection neurons. 
 
 % Setup workspace 
 clc; clear; close all 
@@ -99,47 +106,3 @@ for aa = 1:length(filenames)
         close(gcf)
     end
 end
-
-%% Analyze output 
-mouse_number = {'M005'};
-gene_name = {'CCK'};
-stimulus = {'50C'}; 
-PN_cutoff_val = 1; % if want all, change to 0
-for aa = 1:length(filenames)
-    
-    % filename 
-    input_tbl = [filenames(aa).folder '\' filenames(aa).name(1:end-4) '_table.xlsx']; 
-    
-    % Read table 
-    tbl = readtable(input_tbl); 
-    
-    % Fix data 
-    tbl.RB = str2num(cell2mat(tbl.RB));
-    tbl(tbl.RB == PN_cutoff_val, :) = []; 
-    
-    % New table values 
-    PN_sum = sum(tbl.RB > 1);
-    GENE_PN_sum = sum(tbl.CCK ~= 0); 
-    FOS_PN_sum = sum(tbl.FOS ~= 0);  
-    BOTH_PN_sum = sum((tbl.CCK ~= 0) & (tbl.FOS ~= 0));
-    GENE_per = GENE_PN_sum/PN_sum;
-    FOS_per = FOS_PN_sum/PN_sum;
-    BOTH_per = BOTH_PN_sum/PN_sum;
-    GENE_FOS_per = BOTH_PN_sum/GENE_PN_sum;
-    image_name = {filenames(aa).name(1:end-4)}; 
-    
-    temp = table(   mouse_number, image_name, gene_name, stimulus, PN_sum, GENE_PN_sum, FOS_PN_sum, BOTH_PN_sum, ...
-                    GENE_per, FOS_per, BOTH_per, GENE_FOS_per); 
-                
-    if aa == 1
-        image_table = temp; 
-    else
-        image_table = [image_table; temp];
-    end
-end
-image_table
-
-% Save table 
-writetable(image_table, [filepath mouse_number{1} '_' gene_name{1} '_' stimulus{1} '_table.xlsx'])
-
-
