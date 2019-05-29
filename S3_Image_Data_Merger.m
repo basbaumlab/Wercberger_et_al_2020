@@ -48,7 +48,7 @@ for aa = 1:length(filenames)
     BOTH_per = BOTH_PN_sum/PN_sum;
     GENE_FOS_per = BOTH_PN_sum/GENE_PN_sum;
     
-    % Geofencing results 
+    % ROI results 
     % Sum values 
     sDH_sum = sum(tbl.in_sDH); 
     dDH_sum = sum(tbl.in_dDH);
@@ -59,12 +59,29 @@ for aa = 1:length(filenames)
     dDH_per = dDH_sum/PN_sum;
     LSN_per = LSN_sum/PN_sum;
     
+    % Percentage of PN positive for XX within the sDH
+    GENE_sDH_per = sum((tbl.in_sDH == 1) & (tbl.CCK ~= 0))/sum((tbl.in_sDH == 1)); 
+    FOS_sDH_per = sum((tbl.in_sDH == 1) & (tbl.FOS ~= 0))/sum((tbl.in_sDH == 1));
+    GENE_FOS_sDH_per = sum((tbl.in_sDH == 1) & (tbl.CCK ~= 0) & (tbl.FOS ~= 0))/sum((tbl.in_sDH == 1));
+    
+    % Percentage of PN positive for XX within the dDH
+    GENE_dDH_per = sum((tbl.in_dDH == 1) & (tbl.CCK ~= 0))/sum((tbl.in_dDH == 1)); 
+    FOS_dDH_per = sum((tbl.in_dDH == 1) & (tbl.FOS ~= 0))/sum((tbl.in_dDH == 1));
+    GENE_FOS_dDH_per = sum((tbl.in_dDH == 1) & (tbl.CCK ~= 0) & (tbl.FOS ~= 0))/sum((tbl.in_dDH == 1));
+    
+    % Percentage of PN positive for XX within the LSN
+    GENE_LSN_per = sum((tbl.in_LSN == 1) & (tbl.CCK ~= 0))/sum((tbl.in_LSN == 1)); 
+    FOS_LSN_per = sum((tbl.in_LSN == 1) & (tbl.FOS ~= 0))/sum((tbl.in_LSN == 1));
+    GENE_FOS_LSN_per = sum((tbl.in_LSN == 1) & (tbl.CCK ~= 0) & (tbl.FOS ~= 0))/sum((tbl.in_LSN == 1));
+    
     % Image name
     image_name = {filenames(aa).name(1:end-4)}; 
     
     % Build table 
     temp = table(   mouse_number, image_name, gene_name, stimulus, PN_sum, GENE_PN_sum, FOS_PN_sum, BOTH_PN_sum, ...
-                    GENE_per, FOS_per, BOTH_per, GENE_FOS_per, sDH_sum, dDH_sum, LSN_sum, sDH_per, dDH_per, LSN_per); 
+                    GENE_per, FOS_per, BOTH_per, GENE_FOS_per, sDH_sum, dDH_sum, LSN_sum, sDH_per, dDH_per, LSN_per, ...
+                    GENE_sDH_per, FOS_sDH_per, GENE_FOS_sDH_per, GENE_dDH_per, FOS_dDH_per, GENE_FOS_dDH_per, ...
+                    GENE_LSN_per, FOS_LSN_per, GENE_FOS_LSN_per); 
                 
     if aa == 1
         image_table = temp; 
