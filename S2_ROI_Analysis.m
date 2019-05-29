@@ -21,7 +21,7 @@ mat_dir = 'C:\Users\basbaum\Box Sync\PROJECTS_Projection Neurons_Racheli\Matlab-
 % Find files 
 fig_files = dir([mat_dir '*.fig']);
 tif_files = dir([mat_dir '*.tif']);
-xlsx_files = dir([mat_dir '*.xlsx']);
+xlsx_files = dir([mat_dir '*5_table.xlsx']);
 
 for aa = 1:length(fig_files)
     % Points in or out? 
